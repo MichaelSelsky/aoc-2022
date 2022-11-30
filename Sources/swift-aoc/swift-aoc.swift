@@ -1,0 +1,37 @@
+import ArgumentParser
+import Foundation
+
+@main
+struct Advent: ParsableCommand {
+    @Option(name: .shortAndLong, help: "The Day whose code should be run")
+    var day: Int?
+    
+    @Option(name: .shortAndLong, help: "Path to input file")
+    var path: String
+    
+    func run() throws {
+        if let day {
+            try run(dayNumber: day, inputPath: path)
+        }
+    }
+    
+    func run(dayNumber: Int, inputPath: String) throws {
+        
+        guard let day = Days(rawValue: dayNumber)?.executable else {
+            throw NotImplementedError()
+        }
+        
+        let input = try String(contentsOfFile: "\(inputPath)/day\(dayNumber).txt")
+        print(input)
+        
+        
+        print("==== Day \(dayNumber) ====")
+        let part1StartDate = Date()
+        let part1 = try day.part1(input)
+        print("Part 1 (\(-part1StartDate.timeIntervalSinceNow * 1000) ms): \(part1)")
+
+        let part2StartDate = Date()
+        let part2 = try day.part2(input)
+        print("Part 2 (\(-part1StartDate.timeIntervalSinceNow * 1000) ms): \(part2)")
+    }
+}
