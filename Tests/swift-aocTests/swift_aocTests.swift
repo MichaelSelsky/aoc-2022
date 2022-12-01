@@ -1,5 +1,4 @@
 import XCTest
-@testable import swift_aoc
 
 final class swift_aocTests: XCTestCase {
     func testExample() throws {

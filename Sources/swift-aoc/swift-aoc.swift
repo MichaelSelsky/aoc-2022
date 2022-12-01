@@ -10,11 +10,13 @@ struct Advent: ParsableCommand {
   var path: String
 
   func run() throws {
+      print(FileManager.default.currentDirectoryPath)
+      print(path)
     if let day {
       try run(dayNumber: day, inputPath: path)
     } else {
-      for i in 1...25 {
-        try? run(dayNumber: i, inputPath: path)
+        for i in (1...25) {
+        try run(dayNumber: i, inputPath: path)
       }
     }
   }
@@ -24,6 +26,7 @@ struct Advent: ParsableCommand {
     guard let day = Days(rawValue: dayNumber)?.executable else {
       throw NotImplementedError()
     }
+    print(day)
 
     let input = try String(contentsOfFile: "\(inputPath)/day\(dayNumber).txt")
 

@@ -10,15 +10,23 @@ import Foundation
 
 class Day1: Day {
   func part1(_ input: String) throws -> CustomStringConvertible {
-    input.split(separator: "\n").compactMap { Int($0) }.adjacentPairs().count { $0 < $1 }
+      let calCount = input.lines().reduce(([Int](), 0)) { partialResult, line in
+          if line.isEmpty {
+              return (partialResult.0 + [partialResult.1], 0)
+          }
+          return (partialResult.0, partialResult.1 + Int(line)!)
+      }
+      return calCount.0.max()!
   }
 
   func part2(_ input: String) throws -> CustomStringConvertible {
-    input.split(separator: "\n")
-      .compactMap { Int($0) }
-      .windows(ofCount: 3)
-      .map { $0.sum }
-      .adjacentPairs()
-      .count { $0 < $1 }
+      
+      let calCount = input.lines().reduce(([Int](), 0)) { partialResult, line in
+          if line.isEmpty {
+              return (partialResult.0 + [partialResult.1], 0)
+          }
+          return (partialResult.0, partialResult.1 + Int(line)!)
+      }
+      return calCount.0.sorted(by: >).prefix(3).sum
   }
 }
