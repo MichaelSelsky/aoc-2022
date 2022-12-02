@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-  func lines() -> [Substring] {
-    self.split(separator: "\n", omittingEmptySubsequences: false)
+  func lines(includeEmpties: Bool = false) -> [Substring] {
+    self.split(separator: "\n", omittingEmptySubsequences: !includeEmpties)
   }
 }

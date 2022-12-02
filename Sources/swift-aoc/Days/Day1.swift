@@ -10,7 +10,7 @@ import Foundation
 
 class Day1: Day {
   func part1(_ input: String) throws -> CustomStringConvertible {
-    let calCount = input.lines().reduce(([Int](), 0)) { partialResult, line in
+    let calCount = input.lines(includeEmpties: true).reduce(([Int](), 0)) { partialResult, line in
       if line.isEmpty {
         return (partialResult.0 + [partialResult.1], 0)
       }
@@ -21,7 +21,7 @@ class Day1: Day {
 
   func part2(_ input: String) throws -> CustomStringConvertible {
 
-    let calCount = input.lines().reduce(([Int](), 0)) { partialResult, line in
+    let calCount = input.lines(includeEmpties: true).reduce(([Int](), 0)) { partialResult, line in
       if line.isEmpty {
         return (partialResult.0 + [partialResult.1], 0)
       }
