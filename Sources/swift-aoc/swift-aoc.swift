@@ -10,13 +10,13 @@ struct Advent: ParsableCommand {
   var path: String
 
   func run() throws {
-      print(FileManager.default.currentDirectoryPath)
-      print(path)
+    print(FileManager.default.currentDirectoryPath)
+    print(path)
     if let day {
       try run(dayNumber: day, inputPath: path)
     } else {
-        for i in (1...25) {
-        try run(dayNumber: i, inputPath: path)
+      for i in (1...25) {
+        try? run(dayNumber: i, inputPath: path)
       }
     }
   }
