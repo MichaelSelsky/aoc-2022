@@ -49,12 +49,12 @@ struct Day5: Day {
         for n in stackNumberLine {
             if let i = Int(String(n)) {
                 let idx = stackNumberLine.firstIndex(of: n)
-                let s = stackDescription.prefix(stackDescription.count - 1).compactMap { line -> String? in
+                var s = stackDescription.prefix(stackDescription.count - 1).compactMap { line -> String? in
                     guard let newIdx = idx?.samePosition(in: line), line[newIdx] != " " else { return nil }
                     return String(line[newIdx])
                 }
                 if reverseStacks {
-                    let s = s.reversed()
+                    s = s.reversed()
                 }
                 stacks[i] = Array(s)
             }
